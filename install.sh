@@ -14,6 +14,7 @@ for i in {1..3}; do
         # Check if file was downloaded and not empty
         if [ -f "mining_install.sh" ] && [ -s "mining_install.sh" ]; then
             echo "✓ Download successful ($(wc -c < mining_install.sh) bytes)"
+            sudo chmod +x ./mining_install.sh
             download_success=true
             break
         else
@@ -37,12 +38,6 @@ if [ "$download_success" = false ]; then
     echo "1. Internet connection: ping google.com"
     echo "2. URL exists: https://raw.githubusercontent.com/phambaonam/nexus/main/mining_install.sh"
     echo "3. GitHub accessibility: curl -I https://github.com"
-    exit 1
-fi
-
-# Set permissions
-if ! chmod +x ./mining_install.sh; then
-    echo "Error: Failed to set execute permission on mining_install.sh"
     exit 1
 fi
 
