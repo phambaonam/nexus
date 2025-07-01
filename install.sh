@@ -1,19 +1,21 @@
 #!/bin/bash
 
-[ -f "startup_nexus_1.sh" ] && {
-    sed -i '/# Install Dependencies/d' startup_nexus_1.sh
-    sed -i '/sudo apt update/d' startup_nexus_1.sh
-    sed -i '/sudo apt install screen curl build-essential/d' startup_nexus_1.sh
-    sed -i '/sudo apt install protobuf-compiler/d' startup_nexus_1.sh
-    sed -i '/curl --proto.*rustup.rs/d' startup_nexus_1.sh
-    sed -i '/source \$HOME\/.cargo\/env/d' startup_nexus_1.sh
-    sed -i '/curl -sSf https:\/\/cli.nexus.xyz/d' startup_nexus_1.sh
-    sed -i '/chmod +x install_nexus.sh/d' startup_nexus_1.sh
-    sed -i '/NONINTERACTIVE=1 \.\/install_nexus.sh/d' startup_nexus_1.sh
-    sed -i '/source ~\/.bashrc/d' startup_nexus_1.sh
-    sed -i '/rustup target add riscv32i-unknown-none-elf/d' startup_nexus_1.sh
-    echo "Edited file startup_nexus_1.sh"
-} || echo "File startup_nexus_1.sh not existed"
+sed -i '/# Install Dependencies/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/sudo apt update/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/sudo apt install screen curl build-essential/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/sudo apt install protobuf-compiler/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/curl --proto.*rustup.rs/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/source \$HOME\/.cargo\/env/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/curl -sSf https:\/\/cli.nexus.xyz/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/chmod +x install_nexus.sh/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/NONINTERACTIVE=1 \.\/install_nexus.sh/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/source ~\/.bashrc/d' startup_nexus_1.sh 2>/dev/null
+sed -i '/rustup target add riscv32i-unknown-none-elf/d' startup_nexus_1.sh 2>/dev/null
+
+sed -i '/bash "\$HOME\/startup_nexus_1\.sh" &>\/dev\/null &/d' ~/.bashrc 2>/dev/null
+sed -i '/bash "\$HOME\/startup_nexus_2\.sh" &>\/dev\/null &/d' ~/.bashrc 2>/dev/null
+sed -i '/bash "\$HOME\/startup_nexus_3\.sh" &>\/dev\/null &/d' ~/.bashrc 2>/dev/null
+echo "Edited file startup_nexus_1.sh"
 
 # Install Dependencies
 sudo apt update
@@ -33,3 +35,8 @@ source ~/.bashrc
 curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
 curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash
 # curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/install.sh | bash
+
+# --- start Nexus ---
+[ -f "$HOME/startup_nexus_1.sh" ] && bash "$HOME/startup_nexus_1.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_2.sh" ] && bash "$HOME/startup_nexus_2.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_3.sh" ] && bash "$HOME/startup_nexus_3.sh" &>/dev/null &
