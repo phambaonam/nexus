@@ -89,7 +89,37 @@ rm -f install_nexus.sh
 # Source bashrc
 source ~/.bashrc 2>/dev/null
 
-# Download and run additional scripts with delays
+# Start Nexus instances first
+echo -e "${YELLOW}Starting Nexus instances...${NC}"
+[ -f "$HOME/startup_nexus_1.sh" ] && bash "$HOME/startup_nexus_1.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_2.sh" ] && bash "$HOME/startup_nexus_2.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_3.sh" ] && bash "$HOME/startup_nexus_3.sh" &>/dev/null &
+
+# Wait for Nexus instances to start up
+echo -e "${YELLOW}Waiting for Nexus instances to initialize...${NC}"
+sleep 60
+
+# Wait for log files to appear (indicates Nexus is running)
+echo -e "${YELLOW}Waiting for log files to appear...${NC}"
+timeout=300  # 5 minutes timeout
+counter=0
+while [ $counter -lt $timeout ]; do
+    if [ -f "$HOME/nexus_out_1.log" ] || [ -f "$HOME/nexus_err_1.log" ]; then
+        echo -e "${GREEN}Nexus instances are running (log files detected)${NC}"
+        break
+    fi
+    sleep 5
+    counter=$((counter + 5))
+    if [ $((counter % 30)) -eq 0 ]; then
+        echo -e "${YELLOW}Still waiting for Nexus to start... (${counter}s)${NC}"
+    fi
+done
+
+if [ $counter -ge $timeout ]; then
+    echo -e "${YELLOW}Timeout waiting for log files, proceeding anyway...${NC}"
+fi
+
+# Now run additional scripts after Nexus instances are running
 echo -e "${YELLOW}Setting up Nexus services...${NC}"
 
 echo -e "${YELLOW}Running startup_nexus_service.sh...${NC}"
@@ -97,15 +127,6 @@ curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_
 
 echo -e "${YELLOW}Starting log monitor...${NC}"
 curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash &
-
-# Wait a bit before starting install script
-sleep 30
-
-# Start Nexus instances
-echo -e "${YELLOW}Starting Nexus instances...${NC}"
-[ -f "$HOME/startup_nexus_1.sh" ] && bash "$HOME/startup_nexus_1.sh" &>/dev/null &
-[ -f "$HOME/startup_nexus_2.sh" ] && bash "$HOME/startup_nexus_2.sh" &>/dev/null &
-[ -f "$HOME/startup_nexus_3.sh" ] && bash "$HOME/startup_nexus_3.sh" &>/dev/null &
 
 echo -e "${GREEN}Nexus setup completed!${NC}"
 echo -e "${YELLOW}Check logs with: tail -f ~/nexus_out_1.log${NC}"

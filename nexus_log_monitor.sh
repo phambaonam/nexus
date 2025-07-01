@@ -9,9 +9,6 @@ while true; do
   sleep 30
 done
 
-# Wait for nexus cli installed and run node
-sleep 300
-
 # 2) Wait for log files to exist
 while true; do
   if [[ -f "$HOME/nexus_out_1.log" && -f "$HOME/nexus_err_1.log" ]]; then

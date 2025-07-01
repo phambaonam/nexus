@@ -9,7 +9,7 @@ echo "Home directory: $USER_HOME"
 ################# startup_nexus.service ########################
 if [ -f "$USER_HOME/startup_nexus_1.sh" ]; then
     echo "Found startup_nexus_1.sh - Creating startup_nexus.service..."
-    
+
     sudo tee /etc/systemd/system/startup_nexus.service > /dev/null << EOF
 [Unit]
 Description=Auto Start Nexus node
