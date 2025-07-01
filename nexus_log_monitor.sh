@@ -12,6 +12,16 @@ done
 # Wait for nexus cli installed and run node
 sleep 300
 
+# 2) Wait for log files to exist
+while true; do
+  if [[ -f "$HOME/nexus_out_1.log" && -f "$HOME/nexus_err_1.log" ]]; then
+    echo "Both log files found, proceeding..."
+    break
+  fi
+  echo "Log files not found, waiting 5 minutes..."
+  sleep 300  # Wait 5 minutes
+done
+
 # ——————————————————————————————————————————————————————————————
 # Code below only runs after the loop ends
 # example: open new tabs and tail files
