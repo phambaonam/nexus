@@ -11,6 +11,7 @@
     sed -i '/chmod +x install_nexus.sh/d' startup_nexus_1.sh
     sed -i '/NONINTERACTIVE=1 \.\/install_nexus.sh/d' startup_nexus_1.sh
     sed -i '/source ~\/.bashrc/d' startup_nexus_1.sh
+    sed -i '/rustup target add riscv32i-unknown-none-elf/d' startup_nexus_1.sh
     echo "Edited file startup_nexus_1.sh"
 } || echo "File startup_nexus_1.sh not existed"
 
