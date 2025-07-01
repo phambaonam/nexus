@@ -123,7 +123,7 @@ fi
 echo -e "${YELLOW}Setting up Nexus services...${NC}"
 
 echo -e "${YELLOW}Running startup_nexus_service.sh...${NC}"
-curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
+#curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
 
 echo -e "${YELLOW}Starting log monitor...${NC}"
 curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash &
