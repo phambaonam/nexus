@@ -91,9 +91,9 @@ source ~/.bashrc 2>/dev/null
 
 # Start Nexus instances first
 echo -e "${YELLOW}Starting Nexus instances...${NC}"
-[ -f "$HOME/startup_nexus_1.sh" ] && bash "$HOME/startup_nexus_1.sh" &>/dev/null &
-[ -f "$HOME/startup_nexus_2.sh" ] && bash "$HOME/startup_nexus_2.sh" &>/dev/null &
-[ -f "$HOME/startup_nexus_3.sh" ] && bash "$HOME/startup_nexus_3.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_1.sh" ] && "$HOME/startup_nexus_1.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_2.sh" ] && "$HOME/startup_nexus_2.sh" &>/dev/null &
+[ -f "$HOME/startup_nexus_3.sh" ] && "$HOME/startup_nexus_3.sh" &>/dev/null &
 
 # Wait for Nexus instances to start up
 echo -e "${YELLOW}Waiting for Nexus instances to initialize...${NC}"
@@ -123,7 +123,7 @@ fi
 echo -e "${YELLOW}Setting up Nexus services...${NC}"
 
 echo -e "${YELLOW}Running startup_nexus_service.sh...${NC}"
-#curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
+curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
 
 echo -e "${YELLOW}Starting log monitor...${NC}"
 curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash &

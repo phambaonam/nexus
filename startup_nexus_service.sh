@@ -49,7 +49,7 @@ After=network-online.target
 [Service]
 Type=simple
 User=$USER_NAME
-ExecStart=/bin/bash -c 'bash $USER_HOME/startup_nexus_2.sh >> $USER_HOME/nexus2_out.log 2>> $USER_HOME/nexus2_err.log'
+ExecStart=/bin/bash -c 'bash $USER_HOME/startup_nexus_2.sh >> $USER_HOME/nexus_out_2.log 2>> $USER_HOME/nexus_err_2.log'
 Restart=on-failure
 RestartSec=5
 
@@ -78,7 +78,7 @@ After=network-online.target
 [Service]
 Type=simple
 User=$USER_NAME
-ExecStart=/bin/bash -c 'bash $USER_HOME/startup_nexus_3.sh >> $USER_HOME/nexus3_out.log 2>> $USER_HOME/nexus3_err.log'
+ExecStart=/bin/bash -c 'bash $USER_HOME/startup_nexus_3.sh >> $USER_HOME/nexus_out_3.log 2>> $USER_HOME/nexus_err_3.log'
 Restart=on-failure
 RestartSec=5
 
