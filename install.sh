@@ -33,7 +33,7 @@ curl -sSf https://cli.nexus.xyz/ -o install_nexus.sh \
 source ~/.bashrc
 
 curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
-curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash
+curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash &
 # curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/install.sh | bash
 
 # --- start Nexus ---
