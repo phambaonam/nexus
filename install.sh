@@ -16,7 +16,7 @@
 
 # Install Dependencies
 sudo apt update
-sudo apt install screen curl build-essential pkg-config libssl-dev git-all -y
+sudo apt install screen curl build-essential pkg-config libssl-dev git-all xdotool -y
 sudo apt install protobuf-compiler -y
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
