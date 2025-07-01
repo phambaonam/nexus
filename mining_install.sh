@@ -131,7 +131,7 @@ echo -e "${YELLOW}Running startup_nexus_service.sh...${NC}"
 #curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/startup_nexus_service.sh | bash
 
 echo -e "${YELLOW}Starting log monitor...${NC}"
-curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash &
+#curl -sSL https://raw.githubusercontent.com/phambaonam/nexus/main/nexus_log_monitor.sh | bash &
 
 echo -e "${GREEN}Nexus setup completed!${NC}"
 echo -e "${YELLOW}Check logs with: tail -f ~/nexus_out_1.log${NC}"
