@@ -37,3 +37,5 @@ xdotool key --clearmodifiers ctrl+shift+t
 sleep 0.2
 xdotool type --delay 1 "tail -f \"$HOME/nexus_err_1.log\""
 xdotool key Return
+
+exit 0

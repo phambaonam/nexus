@@ -34,3 +34,5 @@ if grep -Fxq "$LINE_SKIP" ~/.bashrc; then
 else
     echo "Not exist or commented"
 fi
+
+exit 0

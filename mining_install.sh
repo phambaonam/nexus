@@ -135,3 +135,5 @@ echo -e "${YELLOW}Starting log monitor...${NC}"
 
 echo -e "${GREEN}Nexus setup completed!${NC}"
 echo -e "${YELLOW}Check logs with: tail -f ~/nexus_out_1.log${NC}"
+
+exit 0

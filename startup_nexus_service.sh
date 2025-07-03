@@ -97,3 +97,5 @@ fi
 
 
 echo "Script execution completed."
+
+exit 0
