@@ -11,8 +11,7 @@ sudo systemctl stop startup_nexus3.service 2>/dev/null || true
 
 # Install nexus
 sudo apt update
-sudo apt install screen curl build-essential pkg-config libssl-dev git-all -y
-sudo apt install protobuf-compiler
+sudo apt install screen curl build-essential protobuf-compiler pkg-config libssl-dev git-all -y
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source $HOME/.cargo/env
