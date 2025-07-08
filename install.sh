@@ -2,7 +2,7 @@
 
 # Clean up old file
 rm -rf mining_install.sh
-rm -rf /home/user/.nexus
+# rm -rf /home/user/.nexus
 
 # stop services restart
 sudo systemctl stop startup_nexus.service 2>/dev/null || true
