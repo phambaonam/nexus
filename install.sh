@@ -2,11 +2,26 @@
 
 # Clean up old file
 rm -rf mining_install.sh
+rm -rf /home/user/.nexus
 
 # stop services restart
 sudo systemctl stop startup_nexus.service 2>/dev/null || true
 sudo systemctl stop startup_nexus2.service 2>/dev/null || true
 sudo systemctl stop startup_nexus3.service 2>/dev/null || true
+
+# Install nexus
+sudo apt update
+sudo apt install screen curl build-essential pkg-config libssl-dev git-all -y
+sudo apt install protobuf-compiler
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source $HOME/.cargo/env
+
+curl -sSf https://cli.nexus.xyz/ -o install_nexus.sh \
+  && chmod +x install_nexus.sh \
+  && NONINTERACTIVE=1 ./install_nexus.sh
+
+source ~/.bashrc
 
 # Check if startup_nexus scripts are already configured in ~/.bashrc
 echo "Checking startup_nexus configuration in ~/.bashrc..."
