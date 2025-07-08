@@ -40,13 +40,6 @@ EOF
     echo "Successfully added startup_nexus scripts to ~/.bashrc"
 fi
 
-LINE_SKIP='bash "$HOME/startup_nexus_3.sh" &>/dev/null &'
-
-if grep -Fxq "$LINE_SKIP" ~/.bashrc; then
-    sed -i "s/^bash \"\$HOME\/startup_nexus_3\.sh\" \&>\/dev\/null \&$/#&/" ~/.bashrc
-    echo "commented"
-else
-    echo "Not exist or commented"
-fi
+sed -i 's/^#bash "$HOME\/startup_nexus_3.sh" &>\/dev\/null &/bash "$HOME\/startup_nexus_3.sh" &>\/dev\/null &/' ~/.bashrc
 
 exit 0
